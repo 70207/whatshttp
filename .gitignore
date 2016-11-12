@@ -4,4 +4,6 @@
 *.html
 x64/*
 Debug/*
+*.exe
+*.obj
 
