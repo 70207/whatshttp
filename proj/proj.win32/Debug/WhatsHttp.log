@@ -1,0 +1,21 @@
+﻿Build started 2016/11/12 15:40:16.
+     1>Project "H:\git\whatshttp\proj\proj.win32\WhatsHttp.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         WhatsHttp.vcxproj -> H:\git\whatshttp\proj\proj.win32\Debug\WhatsHttp.exe
+       PostBuildEvent:
+         xcopy /y H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\*.dll H:\git\whatshttp\proj\proj.win32\Debug\
+         xcopy /y H:\git\whatshttp\proj\proj.win32\..\..\lib\zlib\x86\*.dll H:\git\whatshttp\proj\proj.win32\Debug\
+         :VCEnd
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadGC2.dll
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadGCE2.dll
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadVC2.dll
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadVCE2.dll
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadVSE2.dll
+         复制了 5 个文件
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\zlib\x86\zlib1.dll
+         复制了 1 个文件
+     1>Done Building Project "H:\git\whatshttp\proj\proj.win32\WhatsHttp.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.25

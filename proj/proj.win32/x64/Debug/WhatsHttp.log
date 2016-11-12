@@ -1,0 +1,9 @@
+﻿Build started 2016/11/12 15:30:52.
+     1>Project "H:\git\whatshttp\proj\proj.win32\WhatsHttp.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         WhatsHttp.vcxproj -> H:\git\whatshttp\proj\proj.win32\x64\Debug\WhatsHttp.exe
+     1>Done Building Project "H:\git\whatshttp\proj\proj.win32\WhatsHttp.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.06
