@@ -1,0 +1,39 @@
+﻿Build started 2016/11/13 21:37:28.
+     1>Project "H:\git\whatshttp\proj\proj.win32\WhatsHttp.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IH:\git\whatshttp\proj\proj.win32\..\..\third\pthread /IH:\git\whatshttp\proj\proj.win32\..\..\third\zlib /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\main.cpp
+         main.cpp
+     1>h:\git\whatshttp\main.cpp(32): warning C4474: 'sprintf' : too many arguments passed for format string
+         h:\git\whatshttp\main.cpp(32): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+     1>h:\git\whatshttp\main.cpp(56): warning C4474: 'sprintf' : too many arguments passed for format string
+         h:\git\whatshttp\main.cpp(56): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\git\whatshttp\proj\proj.win32\Debug\WhatsHttp.exe" /INCREMENTAL /NOLOGO /LIBPATH:H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86 /LIBPATH:H:\git\whatshttp\proj\proj.win32\..\..\lib\zlib\x86 pthreadVC2.lib ws2_32.lib zlib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"H:\git\whatshttp\proj\proj.win32\Debug\WhatsHttp.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\git\whatshttp\proj\proj.win32\Debug\WhatsHttp.lib" /MACHINE:X86 Debug\main.obj
+         Debug\WhatsHttp.obj
+         Debug\WhatsEvent.obj
+         Debug\WhatsEventCycle.obj
+         Debug\WhatsLog.obj
+         Debug\WhatsRequest.obj
+         Debug\WhatsResponse.obj
+         Debug\WhatsSocket.obj
+         Debug\WhatsThread.obj
+         Debug\WhatsThreadSync.obj
+         Debug\WhatsUtility.obj
+         WhatsHttp.vcxproj -> H:\git\whatshttp\proj\proj.win32\Debug\WhatsHttp.exe
+       PostBuildEvent:
+         xcopy /y H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\*.dll H:\git\whatshttp\proj\proj.win32\Debug\
+         xcopy /y H:\git\whatshttp\proj\proj.win32\..\..\lib\zlib\x86\*.dll H:\git\whatshttp\proj\proj.win32\Debug\
+         :VCEnd
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadGC2.dll
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadGCE2.dll
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadVC2.dll
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadVCE2.dll
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\pthread\x86\pthreadVSE2.dll
+         复制了 5 个文件
+         H:\git\whatshttp\proj\proj.win32\..\..\lib\zlib\x86\zlib1.dll
+         复制了 1 个文件
+     1>Done Building Project "H:\git\whatshttp\proj\proj.win32\WhatsHttp.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.40

@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <string.h>
 #include "WhatsLog.h"
 #include "WhatsResponse.h"
 #include "WhatsUtility.h"
 
 #ifdef _WIN32
 #define stricmp _stricmp
+#else
+#define stricmp strcasecmp
 #endif
 
 WhatsResponse::WhatsResponse()
@@ -113,9 +116,12 @@ bool  WhatsResponse::checkFull(bool hasClosed)
     }
 
  
-    int lastPos = m_data.find("\r\n\r\n", bodyPos);
-    if (lastPos <= 0 && !hasClosed) {
-        return false;
+    int lastPos = 0; 
+    if (m_data.length() - bodyPos < m_contentLen) {
+        lastPos = m_data.find("\r\n\r\n", bodyPos);
+        if (lastPos <= 0 && !hasClosed) {
+            return false;
+        }
     }
    
     if (lastPos <= 0) {
@@ -169,8 +175,9 @@ void WhatsResponse::decodeGzipContent(int size)
 
     utility.depressGzip(m_body.c_str(), size);
   
-    WhatsUtility::OK != utility.depressGzipEnd(size);
-    m_body.assign((const char*)buffer, size);
+    if (WhatsUtility::OK != utility.depressGzipEnd(size)) {
+        m_body.assign((const char*)buffer, size);
+    }
 }
 
 void WhatsResponse::decodeGzipChuncked()
@@ -197,8 +204,9 @@ void WhatsResponse::decodeGzipChuncked()
     }
 
     int size = 0;
-    WhatsUtility::OK != utility.depressGzipEnd(size);
-    m_body.assign((const char*)buffer, size);
+    if (WhatsUtility::OK != utility.depressGzipEnd(size)) {
+        m_body.assign((const char*)buffer, size);
+    }
 
     
 }

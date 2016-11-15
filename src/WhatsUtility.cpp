@@ -2,16 +2,18 @@
 #include <stdio.h>
 #include <errno.h>
 #include <zlib.h>
+#include <string.h>
 
 #ifndef _WIN32
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <sys/types.h>
+#include <netdb.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#define stricmp strcasecmp
 #else
 #include <WinSock2.h>
 #include <Ws2tcpip.h>

@@ -1,11 +1,18 @@
 #ifndef _WHATS_SOCKET_H__
 #define _WHATS_SOCKET_H__
 
-#include <string>
-#include <time.h>
 #ifdef _WIN32
 #include <WinSock2.h>
+#else
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #endif
+
+#include <string>
+#include <time.h>
+
+
 using namespace std;
 class WhatsSocket
 {

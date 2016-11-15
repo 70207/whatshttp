@@ -3,6 +3,7 @@
 
 #ifndef _WIN32
 #include <unistd.h>
+#include <string.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -123,7 +124,7 @@ bool WhatsSocket::setNonInherit()
 #ifndef _WIN32
     int iFcntlResult = -1;
 
-    iFcntlResult = fcntl(m_socketFd, F_SETFD, 1);
+    iFcntlResult = fcntl(m_sockFd, F_SETFD, 1);
     if (-1 == iFcntlResult)
     {
         return false;

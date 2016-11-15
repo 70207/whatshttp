@@ -119,6 +119,9 @@ int  WhatsEvent::onRecvEvent()
         status = EVENT_CLOSED;
         hasClosed = true;
         break;
+    case WhatsSocket::SOCK_AGAIN:
+
+        break;
     case WhatsSocket::SOCK_OK:
 
         break;
@@ -126,11 +129,16 @@ int  WhatsEvent::onRecvEvent()
 
     if (recvedSize > 0) {
         m_rsp.appendResponse(buffer, recvedSize);
+    }
+
+    if (recvedSize > 0 || hasClosed) {
+        
         if (m_rsp.checkFull(hasClosed)) {
             m_rspFunc(&m_rsp, WhatsHttp::ERROR_OK);
             status = EVENT_DONE;
         }
     }
+
 
 
     return status;
@@ -170,11 +178,11 @@ int  WhatsEvent::getSockFd()
 
 bool WhatsEvent::initPeer()
 {
-    std::string url = m_req.getUrl();
 
     std::string ip;
+    std::string url = m_req.getUrl();
     
-    if (WhatsUtility::OK != WhatsUtility::getIpByUrl(m_req.getUrl(), ip)) {
+    if (WhatsUtility::OK != WhatsUtility::getIpByUrl(url, ip)) {
         return false;
     }
 
