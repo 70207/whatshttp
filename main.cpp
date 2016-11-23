@@ -7,7 +7,7 @@
 #include "src/WhatsHttp.h"
 
 
-const char*  surl = "http://blog.csdn.net/a2011480169/article/details/51588253";//"http://news.sohu.com/20161112/n472976161.shtml";
+const char*  surl = "http://open.matchvs.com/wc4/getItemRank.do?&gameID=100011&item=scoreA&top=55";//"http://news.sohu.com/20161112/n472976161.shtml";
 int main()
 {
 #ifdef WIN32
@@ -48,35 +48,7 @@ int main()
         }
     });
 
-    surl = "http://news.sohu.com/20161112/n472976161.shtml";
-    url = surl;
-    req.setUrl(url);
 
-
-    WhatsHttp::getInstance()->doRequest(req, [](WhatsResponse *rsp, int error) {
-        if (!rsp) {
-            printf("rsp error:%d\n", error);
-        }
-        else {
-            std::string str = rsp->getResponse();
-            printf("rsp length:%d\n", str.length());
-            //printf("rsp:%s", str.c_str());
-            FILE* file;
-            char buffer[1024];
-            sprintf(buffer, "./test2.html", surl);
-#ifdef _WIN32
-            fopen_s(&file, buffer, "wb");
-#else
-            file = fopen(buffer, "wb");
-#endif
-            if (file) {
-                fwrite(str.c_str(), 1, str.length(), file);
-                fclose(file);
-            }
-        }
-    });
-
-    
     
     while (1) {
 #ifdef _WIN32

@@ -32,6 +32,9 @@ public:
 private:
     void decodeGzipChuncked();
     void decodeGzipContent(int size);
+
+    void decodeChuncked();
+    void decodeContent(int size);
     
 private:
     std::string m_data;

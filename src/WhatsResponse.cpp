@@ -146,6 +146,16 @@ bool  WhatsResponse::checkFull(bool hasClosed)
 
     m_body = m_data.substr(bodyPos/*, m_contentLen*/);
 
+    FILE* file = fopen("header.html", "wt");
+    if (file) {
+        fwrite(m_header.c_str(), 1, m_header.size(), file);
+        fclose(file);
+    }
+    file = fopen("body.html", "wt");
+    if (file) {
+        fwrite(m_body.c_str(), 1, m_body.size(), file);
+        fclose(file);
+    }
     decodeData();
 
     return true;
@@ -156,12 +166,21 @@ bool  WhatsResponse::checkFull(bool hasClosed)
 
 void WhatsResponse::decodeData()
 {
-    if (m_header.find("gzip") > 0) {
+    int pos = m_header.find("gzip");
+    if (pos > 0) {
         if (m_bodyChuncked) {
             decodeGzipChuncked();
         }
         else {
             decodeGzipContent(m_contentLen);
+        }
+    }
+    else {
+        if (m_bodyChuncked) {
+            decodeChuncked();
+        }
+        else {
+            decodeContent(m_contentLen);
         }
     }
 }
@@ -178,6 +197,39 @@ void WhatsResponse::decodeGzipContent(int size)
     if (WhatsUtility::OK != utility.depressGzipEnd(size)) {
         m_body.assign((const char*)buffer, size);
     }
+}
+
+void WhatsResponse::decodeChuncked()
+{
+    unsigned char buffer[ZLIB_BUFFER_LEN_RESERVE];
+    int           bufpos = 0;
+
+    int fpos = 0;
+    while (1) {
+        int dilpos = m_body.find("\r\n", fpos);
+        if (dilpos <= 0) {
+            break;
+        }
+        std::string        countstr = m_body.substr(fpos, dilpos - fpos);
+        int count = strtol(countstr.c_str(), 0, 16);
+        if (count <= 0) {
+            break;
+        }
+
+        memcpy(buffer + bufpos, m_body.c_str() + dilpos + 2, count);
+        fpos = dilpos + 2 + count + 2;
+        bufpos += count;
+    }
+
+    int size = bufpos;
+    buffer[bufpos] = 0;
+
+    m_body.assign((const char*)buffer, size);
+    
+}
+void WhatsResponse::decodeContent(int size)
+{
+    return;
 }
 
 void WhatsResponse::decodeGzipChuncked()
@@ -204,7 +256,7 @@ void WhatsResponse::decodeGzipChuncked()
     }
 
     int size = 0;
-    if (WhatsUtility::OK != utility.depressGzipEnd(size)) {
+    if (WhatsUtility::OK == utility.depressGzipEnd(size)) {
         m_body.assign((const char*)buffer, size);
     }
 
